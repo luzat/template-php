@@ -1,12 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env -S bash -e
 
-set -e
-
-SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
-
-cd "$SCRIPTPATH"
-cd ..
-
+cd "${BASH_SOURCE%/*}/.."
 . ./.env
 
-exec docker-compose exec mysql /usr/bin/mysql --default-character-set=utf8 --silent -h mysql -u root --password=dev "$MYSQL_DATABASE"
+"${BASH_SOURCE%/*}/exec.sh" mysql mysql --default-character-set=utf8 --silent -h mysql -u root --password=dev "$MYSQL_DATABASE"

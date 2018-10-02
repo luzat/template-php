@@ -1,12 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env -S bash -e
 
-set -e
-
-SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
-
-cd "$SCRIPTPATH"
-cd ..
-
-. ./.env
-
-exec docker-compose exec -u "$DUID" /usr/local/bin/php "$@"
+"${BASH_SOURCE%/*}/exec.sh" php php "$@"

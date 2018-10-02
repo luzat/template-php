@@ -1,12 +1,3 @@
-#!/bin/sh
+#!/usr/bin/env -S bash -e
 
-set -e
-
-SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
-
-cd "$SCRIPTPATH"
-cd ..
-
-. ./.env
-
-./dump.sh | gzip -9 > mysql/dump.sql.gz
+"${BASH_SOURCE%/*}/dump.sh" | gzip -9 > "${BASH_SOURCE%/*}/../mysql/dump.sql.gz"
