@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  httpd:
+    image: luzat/httpd:2.4
+    env_file:
+      - .env
+    volumes:
+      - ./htdocs:/var/www/htdocs
+      - ./httpd/conf.d:/usr/local/apache2/conf/conf.d
+      #- ./httpd/server.crt:/usr/local/apache2/conf/server.crt
+      #- ./httpd/server.key:/usr/local/apache2/conf/server.key
+    ports:
+      - '80:80'
+      - '443:443'
+
+  php:
+    image: luzat/php:7.2
+    env_file:
+      - .env
+    environment:
+    - MYSQL_HOST=mysql
+    volumes:
+      - ./htdocs:/var/www/htdocs
+      - ./php/conf.d:/usr/local/etc/php/conf.d.local
+    user: "$DUID:$DGID"
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - '1080:1080'
+
+  mysql:
+    image: mysql:5.7
+    env_file:
+      - .env
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=dev
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+    user: "$DUID:$DGID"

@@ -1,0 +1,6 @@
+[mysqld]
+sql-mode = NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+max-allowed-packet = 32M
+
+[mysql]
+max-allowed-packet = 32M
