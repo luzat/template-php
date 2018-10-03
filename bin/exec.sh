@@ -3,4 +3,4 @@
 cd "${BASH_SOURCE%/*}/.."
 . ./.env
 
-exec docker-compose exec -u "$DUID" "$@"
+exec docker-compose exec "$@"
