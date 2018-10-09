@@ -13,20 +13,20 @@ services:
     ports:
       - '80:80'
       - '443:443'
-    working_dir: "/var/www/$HTTPD_ROOT"
+    working_dir: "/var/www/$HTTPD_DIR"
 
   php:
     image: luzat/php:7.2
     env_file:
       - .env
     environment:
-      - HOME=/var/www/$HTTPD_ROOT
+      - HOME=/var/www/$HTTPD_DIR
       - MYSQL_HOST=mysql
     volumes:
       - ./htdocs:/var/www/htdocs
       - ./php/conf.d:/usr/local/etc/php/conf.d.local
     user: "$DUID:$DGID"
-    working_dir: "/var/www/$HTTPD_ROOT"
+    working_dir: "/var/www/$HTTPD_DIR"
 
   mailcatcher:
     image: schickling/mailcatcher
