@@ -51,3 +51,24 @@ services:
     ports:
       - '3306:3306'
     user: "$DUID:$DGID"
+
+# Optional services
+#  adminer:
+#    image: adminer
+#    environment:
+#    - ADMINER_DEFAULT_SERVER=mysql
+#    ports:
+#    - '8080:8080'
+
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    environment:
+#      - PMA_HOST=mysql
+#    ports:
+#      - '8081:80'
+
+#  redis:
+#    image: redis
+#    command: ['redis-server', '--appendonly', 'yes']
+#    volumes:
+#      - ./redis/data:/data
