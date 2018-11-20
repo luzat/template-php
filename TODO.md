@@ -2,7 +2,6 @@
 
 * Move `.env.sample` to `.env` and adjust settings.
 * Replace `htdocs/info.php` by project files.
-* Configure project to use MySQL host `mysql`.
 * If desired, create SSL certificate and copy certificate to
 `httpd/server.crt` and private key to `httpd/server.key`.
 * Place database initialization scripts in `mysql/initdb.d/*.{sh,sql,sql.gz}`.

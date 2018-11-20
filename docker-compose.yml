@@ -25,10 +25,10 @@ services:
       - .env
     environment:
       - HOME=/var/www/$HTTPD_DIR
-      - MYSQL_HOST=mysql
     volumes:
       - ./htdocs:/var/www/htdocs
       - ./php/conf.d:/usr/local/etc/php/conf.d.local
+      - mysql_socket:/var/run/mysqld
     user: "$DUID:$DGID"
     working_dir: "/var/www/$HTTPD_DIR"
 
@@ -42,15 +42,29 @@ services:
     env_file:
       - .env
     environment:
-      - MYSQL_HOST=mysql
       - MYSQL_ROOT_PASSWORD=dev
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/data:/var/lib/mysql
       - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - mysql_socket:/var/run/mysqld
     ports:
       - '3306:3306'
     user: "$DUID:$DGID"
+    networks:
+      default:
+        aliases:
+          - "$MYSQL_HOST"
+
+  # Bridge localhost:3306 from PHP to MySQL
+  mysql_bridge:
+    image: alpine/socat
+    command: TCP-LISTEN:3306,fork TCP:mysql:3306
+    network_mode: service:php
+
+# Bridge UNIX socket from PHP to MySQL to support /var/run/mysqld/mysqld.sock
+volumes:
+  mysql_socket:
 
 # Optional services
 #  adminer:
