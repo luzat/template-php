@@ -1,0 +1,3 @@
+#!/usr/bin/env -S bash -e
+
+"${BASH_SOURCE%/*}/dump" | gzip -9 > "${BASH_SOURCE%/*}/../mysql/dump.sql.gz"
