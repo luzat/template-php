@@ -1,4 +1,4 @@
-FROM luzat/php:7.2
+FROM luzat/php:7.4
 
 ARG DGID=1000
 ARG DUID=1000
