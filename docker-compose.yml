@@ -62,10 +62,6 @@ services:
     command: TCP-LISTEN:3306,fork TCP:mysql:3306
     network_mode: service:php
 
-# Bridge UNIX socket from PHP to MySQL to support /var/run/mysqld/mysqld.sock
-volumes:
-  mysql_socket:
-
 # Optional services
 #  adminer:
 #    image: adminer
@@ -89,3 +85,9 @@ volumes:
 #    command: ['redis-server', '--appendonly', 'yes']
 #    volumes:
 #      - ./redis/data:/data
+
+# Bridge UNIX socket from PHP to MySQL to support /var/run/mysqld/mysqld.sock
+volumes:
+  mysql_socket:
+
+
