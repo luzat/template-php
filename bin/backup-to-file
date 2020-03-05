@@ -12,8 +12,8 @@ fi
 if [[ $# -gt 0 ]]; then
   file="$1"
 else
-  file="backups/dump.sql.gz"
+  file="backups/htdocs.tar.gz"
 fi
 
-"${BASH_SOURCE%/*}/dump" | "$gzip" -9 > "$file"
+tar c htdocs | "$gzip" -9 > "$file"
 

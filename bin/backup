@@ -1,0 +1,12 @@
+#!/usr/bin/env -S bash -e
+
+cd "${BASH_SOURCE%/*}/.."
+. ./.env
+
+now=$(date +%Y%m%d%H%M%S)
+
+bin/dump-to-file "backups/dump-$now.sql.gz" &
+bin/backup-to-file "backups/htdocs-$now.tar.gz"
+
+wait
+
