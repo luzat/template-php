@@ -15,5 +15,4 @@ else
   file="backups/dump.sql.gz"
 fi
 
-"${BASH_SOURCE%/*}/dump" | "$gzip" -9 > "$file"
-
+bin/dump | "$gzip" -9 > "$file"

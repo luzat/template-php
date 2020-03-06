@@ -3,4 +3,4 @@
 cd "${BASH_SOURCE%/*}/.."
 . ./.env
 
-"${BASH_SOURCE%/*}/docker-exec" mysql mysql --default-character-set=utf8 --silent -h mysql -u root --password=dev "$MYSQL_DATABASE"
+bin/docker-exec mysql mysql --default-character-set=utf8 --silent -h mysql -u root --password=dev "$MYSQL_DATABASE"
