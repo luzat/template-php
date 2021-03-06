@@ -38,7 +38,7 @@ services:
       - '1080:1080'
 
   mysql:
-    image: mysql:5.7
+    image: mariadb:10.1
     env_file:
       - .env
     environment:
@@ -89,5 +89,4 @@ services:
 # Bridge UNIX socket from PHP to MySQL to support /var/run/mysqld/mysqld.sock
 volumes:
   mysql_socket:
-
 
