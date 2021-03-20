@@ -31,6 +31,8 @@ services:
       - mysql_socket:/var/run/mysqld
     user: "$DUID:$DGID"
     working_dir: "/var/www/$HTTPD_DIR"
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   mailcatcher:
     image: schickling/mailcatcher
@@ -89,4 +91,5 @@ services:
 # Bridge UNIX socket from PHP to MySQL to support /var/run/mysqld/mysqld.sock
 volumes:
   mysql_socket:
+
 
